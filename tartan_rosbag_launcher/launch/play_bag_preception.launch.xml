@@ -1,0 +1,26 @@
+<launch>
+
+  <arg name="rosbag" default="/workspace/rosbags/my_bag.mcap"/>
+
+  <executable cmd="ros2 bag play --clock 100 --read-ahead-queue-size 10000 -l $(var rosbag) --topics 
+                      /sensor/lidar/top/points
+                      /sensor/camera/fsp_l/image_rect_color/compressed
+                      /sensor/camera/fsp_l/camera_info
+                      /sensor/camera/lspf_r/image_rect_color/compressed
+                      /sensor/camera/lspf_r/camera_info
+                      /sensor/camera/lspr_l/image_rect_color/compressed
+                      /sensor/camera/lspr_l/camera_info
+                      /sensor/camera/rspr_r/image_rect_color/compressed
+                      /sensor/camera/rspr_r/camera_info
+                      /sensor/camera/rsp_l/image_rect_color/compressed
+                      /sensor/camera/rsp_l/camera_info
+                      /sensor/camera/rspf_l/image_rect_color/compressed
+                      /sensor/camera/rspf_l/camera_info 
+                      " output="screen" />
+
+  <node pkg="point_type_converter" exec="point_type_converter_node" name="ouster_point_type_converter" output="screen">
+    <remap from="input_poincloud" to="/sensor/lidar/top/points"/>
+    <remap from="output_pointcloud" to="/sensing/lidar/concatenated/pointcloud"/>
+  </node>
+
+</launch>
