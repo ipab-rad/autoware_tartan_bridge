@@ -1,0 +1,23 @@
+<launch>
+  <group>
+    <!-- <push-ros-namespace namespace="/sensor/camera"/> -->
+    <node_container pkg="rclcpp_components" exec="component_container_mt" name="bag_player_container" output="screen" namespace="">
+
+      <!-- ROS 2 bag player -->
+      <composable_node pkg="rosbag2_transport" plugin="rosbag2_transport::Player" name="ros2bag_player_node" namespace="">
+        <param from="$(find-pkg-share tartan_rosbag_launcher)/config/player_params.yaml"/>
+        <param name="storage/uri" value="/workspace/rosbags/2024_11_15-14_05_41_meadows_new_antennas_galileo_44.mcap"/>
+        <!-- <param from="$(find-pkg-share av_camera_launch)/config/rspr_r_config.yaml"/> -->
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+        
+        <!-- Point type converter  -->
+      <composable_node pkg="point_type_converter" plugin="autoware_tartan_bridge::PointTypeConverter" name="ouster_point_type_converter" namespace="">
+        <remap from="input_poincloud" to="/sensor/lidar/top/points"/>
+        <remap from="output_pointcloud" to="/sensing/lidar/concatenated/pointcloud"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+    </node_container>
+  </group>
+</launch>
