@@ -6,7 +6,7 @@ A collection of ROS2 pkgs to interface tartan carpet vehicle's sensors to autowa
 ## Play a Rosbag with point type conversion
 
 ```bash
-ros2 launch tartan_rosbag_launcher play_bag_preception.launch.xml rosbag:=/path/to/your/rosbag.mcap
+ros2 launch tartan_rosbag_launcher play_bag_perception.launch.xml rosbag:=/path/to/your/rosbag.mcap
 ```
 By default, the rosbag will play in a loop.
 
