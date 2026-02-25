@@ -1,8 +1,8 @@
 <launch>
-
   <arg name="rosbag" default="/workspace/rosbags/my_bag.mcap"/>
 
-  <executable cmd="ros2 bag play --clock 100 --read-ahead-queue-size 10000 -l $(var rosbag) --topics 
+  <executable
+    cmd="ros2 bag play --clock 100 --read-ahead-queue-size 10000 -l $(var rosbag) --topics
                       /sensor/lidar/top/points
                       /sensor/camera/fsp_l/image_rect_color/compressed
                       /sensor/camera/fsp_l/camera_info
@@ -19,11 +19,12 @@
                       /tf
                       /tf_static
                       /joint_states
-                      " output="screen" />
+                      "
+    output="screen"
+  />
 
   <node pkg="point_type_converter" exec="point_type_converter_node" name="ouster_point_type_converter" output="screen">
     <remap from="input_pointcloud" to="/sensor/lidar/top/points"/>
     <remap from="output_pointcloud" to="/sensing/lidar/concatenated/pointcloud"/>
   </node>
-
 </launch>

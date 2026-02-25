@@ -1,5 +1,5 @@
-#ifndef POINT_TYPE_CONVERTER_HPP
-#define POINT_TYPE_CONVERTER_HPP
+#ifndef POINT_TYPE_CONVERTER__POINT_TYPE_CONVERTER_HPP_
+#define POINT_TYPE_CONVERTER__POINT_TYPE_CONVERTER_HPP_
 
 #include "rclcpp/rclcpp.hpp"
 
@@ -39,4 +39,4 @@ private:
 
 }  // namespace autoware_tartan_bridge
 
-#endif  // POINT_TYPE_CONVERTER_HPP
+#endif  // POINT_TYPE_CONVERTER__POINT_TYPE_CONVERTER_HPP_

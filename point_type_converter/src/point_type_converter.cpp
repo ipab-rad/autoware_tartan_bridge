@@ -136,7 +136,7 @@ void PointTypeConverter::pointCloudCallback(const sensor_msgs::msg::PointCloud2:
   }
 
   auto end = std::chrono::high_resolution_clock::now();
-  
+
   publisher_->publish(output_msg);
 
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
