@@ -22,7 +22,7 @@ add_library(point_type_converter_component SHARED src/point_type_converter.cpp)
 target_include_directories(
   point_type_converter_component
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-         $<INSTALL_INTERFACE:include>)
+  $<INSTALL_INTERFACE:include>)
 
 ament_target_dependencies(point_type_converter_component "rclcpp"
                           "rclcpp_components" "sensor_msgs" "std_msgs")
