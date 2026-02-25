@@ -1,5 +1,5 @@
-#ifndef POINT_TYPE_CONVERTER_HPP
-#define POINT_TYPE_CONVERTER_HPP
+#ifndef POINT_TYPE_CONVERTER__POINT_TYPE_CONVERTER_HPP_
+#define POINT_TYPE_CONVERTER__POINT_TYPE_CONVERTER_HPP_
 
 #include "rclcpp/rclcpp.hpp"
 
@@ -27,7 +27,7 @@ struct PointXYZIRCAEDT
 class PointTypeConverter : public rclcpp::Node
 {
 public:
-  PointTypeConverter(const rclcpp::NodeOptions & options);
+  explicit PointTypeConverter(const rclcpp::NodeOptions & options);
 
 private:
   void pointCloudCallback(const sensor_msgs::msg::PointCloud2::SharedPtr msg);
@@ -39,4 +39,4 @@ private:
 
 }  // namespace autoware_tartan_bridge
 
-#endif  // POINT_TYPE_CONVERTER_HPP
+#endif  // POINT_TYPE_CONVERTER__POINT_TYPE_CONVERTER_HPP_

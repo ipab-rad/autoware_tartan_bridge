@@ -9,8 +9,5 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rosbag2_transport REQUIRED)
 
-install(
-  DIRECTORY launch config
-  DESTINATION share/${PROJECT_NAME}
-)
+install(DIRECTORY launch config DESTINATION share/${PROJECT_NAME})
 ament_package()

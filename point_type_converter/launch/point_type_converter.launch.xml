@@ -1,6 +1,6 @@
 <launch>
   <node pkg="point_type_converter" exec="point_type_converter_node" name="ouster_point_type_converter" output="screen">
-    <remap from="input_poincloud" to="/sensor/lidar/top/points"/>
+    <remap from="input_pointcloud" to="/sensor/lidar/top/points"/>
     <remap from="output_pointcloud" to="/sensing/lidar/concatenated/pointcloud"/>
   </node>
 </launch>

@@ -14,11 +14,11 @@
       clock_publish_frequency: 100.0
       clock_publish_on_topic_publish: true
       # # clock_trigger_topics: ["/triggers/clock"]
-      # Negative durations are invalid. 
+      # Negative durations are invalid.
       # delay:
       #   sec: 0
       #   nsec: 1
-      # Negative timestamps will make the playback to not stop.  
+      # Negative timestamps will make the playback to not stop.
       playback_duration:
         sec: -1
         nsec: 00000000
@@ -28,7 +28,7 @@
       #   nsec: -500000000
       # start_paused: true
       # # Negative durations are invalid.
-      # start_offset: 
+      # start_offset:
       #   sec: 0
       #   nsec: 999999999
       disable_keyboard_controls: true

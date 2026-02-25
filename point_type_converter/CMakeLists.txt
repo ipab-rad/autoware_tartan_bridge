@@ -15,37 +15,28 @@ find_package(rclcpp_components REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 
-include_directories(
-  include
-)
+include_directories(include)
 
-add_library(point_type_converter_component SHARED 
-  src/point_type_converter.cpp)
+add_library(point_type_converter_component SHARED src/point_type_converter.cpp)
 
-target_include_directories(point_type_converter_component PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+target_include_directories(
+  point_type_converter_component
+  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 
+ament_target_dependencies(point_type_converter_component "rclcpp"
+                          "rclcpp_components" "sensor_msgs" "std_msgs")
 
-ament_target_dependencies(point_type_converter_component
-  "rclcpp"
-  "rclcpp_components"
-  "sensor_msgs"
-  "std_msgs"
-)
-
-rclcpp_components_register_node(point_type_converter_component
-  PLUGIN "autoware_tartan_bridge::PointTypeConverter"
-  EXECUTABLE point_type_converter_node)
-
-install(TARGETS point_type_converter_component
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-    RUNTIME DESTINATION bin
-)
+rclcpp_components_register_node(
+  point_type_converter_component PLUGIN
+  "autoware_tartan_bridge::PointTypeConverter" EXECUTABLE
+  point_type_converter_node)
 
 install(
-  DIRECTORY launch
-  DESTINATION share/${PROJECT_NAME}
-)
+  TARGETS point_type_converter_component
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin)
+
+install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
 ament_package()
