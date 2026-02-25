@@ -13,7 +13,8 @@ PointTypeConverter::PointTypeConverter(const rclcpp::NodeOptions & options)
     "input_pointcloud", rclcpp::SensorDataQoS(),
     std::bind(&PointTypeConverter::pointCloudCallback, this, std::placeholders::_1));
 
-  publisher_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("output_pointcloud", rclcpp::SensorDataQoS());
+  publisher_ = this->create_publisher<sensor_msgs::msg::PointCloud2>(
+    "output_pointcloud", rclcpp::SensorDataQoS());
   computation_time_publisher_ =
     this->create_publisher<std_msgs::msg::Float64>("processing_time_ms", 10);
 
@@ -22,7 +23,7 @@ PointTypeConverter::PointTypeConverter(const rclcpp::NodeOptions & options)
 
 void PointTypeConverter::pointCloudCallback(const sensor_msgs::msg::PointCloud2::SharedPtr msg)
 {
-  // quick check is data is empty just dont run
+  // Quick check: if data is empty just don't run
   if(msg->data.empty() || msg->width * msg->height == 0)
   {
     RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 1000, "Input message empty");
@@ -102,10 +103,6 @@ void PointTypeConverter::pointCloudCallback(const sensor_msgs::msg::PointCloud2:
   const size_t t_offset = 20;
   const size_t ring_offset = 26;
   const size_t range_offset = 32;
-
-  // Reserve memory for output data
-  // Not actually needed if we already call resize above
-  //output_msg.data.reserve(msg->width * msg->height * output_msg.point_step);
 
   // Iterate over each point
   for (size_t i = 0; i < msg->width * msg->height; ++i) {

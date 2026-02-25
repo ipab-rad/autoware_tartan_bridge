@@ -27,7 +27,7 @@ struct PointXYZIRCAEDT
 class PointTypeConverter : public rclcpp::Node
 {
 public:
-  PointTypeConverter(const rclcpp::NodeOptions & options);
+  explicit PointTypeConverter(const rclcpp::NodeOptions & options);
 
 private:
   void pointCloudCallback(const sensor_msgs::msg::PointCloud2::SharedPtr msg);
